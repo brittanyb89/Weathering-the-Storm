@@ -19,12 +19,27 @@ body {
   }
 
   button {
-    padding: 1rem;
-    margin: 1rem;
+    padding: 2rem;
+    margin: 2rem;
+  }
+
+  h2 {
+    padding: .15rem;
+    margin: .15rem;
   }
 
 div .col-3 {
     border-bottom: 2px solid black;
+    margin: 0;
+    padding: 3rem;
   }
 
+div .row {
+  padding: .5rem;
+  margin: .25rem;
+}
 
+div .col {
+  padding: .5rem;
+  margin: 2rem;
+}
