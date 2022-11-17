@@ -1,7 +1,7 @@
 :root {
   --main-bg-color: aliceblue;
   --secondary-bg-color: powderblue;
-  --ternary-bg-color: rgb(63 192 192);
+  --ternary-bg-color: rgb(149 231 231);
 }
 
 body {
@@ -42,4 +42,30 @@ div .row {
 div .col {
   padding: .5rem;
   margin: 2rem;
+}
+
+.box1,
+.box2,
+.box3,
+.box4,
+.box5 {
+  background: var(--ternary-bg-color);
+  border: 1px solid black;
+  display: flex;
+  gap: 3rem;
+  height: 10rem;
+  margin: 4rem;
+  padding: 1rem;
+  width: 45rem;
+}
+
+.current {
+  background-color: azure;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  height: 15rem;
+  margin: 1rem;
+  padding: 1rem;
+  width: 65rem;
 }
