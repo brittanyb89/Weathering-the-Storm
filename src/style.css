@@ -8,39 +8,34 @@ body {
   background-color: var(--main-bg-color);
 }
 
-  header {
-    background-image: linear-gradient(to right, rgb(145 215 238), rgb(31 31 146));
-    height: 80px;
-  }
+header {
+  background-image: linear-gradient(to right, rgb(145 215 238), rgb(31 31 146));
+  height: 80px;
+}
 
-  h1 {
-    padding: 1rem;
-    margin: .5rem;
-  }
+button {
+  padding: 2rem;
+  margin: 2rem;
+}
 
-  button {
-    padding: 2rem;
-    margin: 2rem;
-  }
-
-  h2 {
-    padding: .15rem;
-    margin: .15rem;
-  }
+h2 {
+  padding: 0.15rem;
+  margin: 0.15rem;
+}
 
 div .col-3 {
-    border-bottom: 2px solid black;
-    margin: 0;
-    padding: 3rem;
-  }
+  border-bottom: 2px solid black;
+  margin: 0;
+  padding: 3rem;
+}
 
 div .row {
-  padding: .5rem;
-  margin: .25rem;
+  padding: 0.5rem;
+  margin: 0.25rem;
 }
 
 div .col {
-  padding: .5rem;
+  padding: 0.5rem;
   margin: 2rem;
 }
 
