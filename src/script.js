@@ -5,8 +5,8 @@ document.querySelectorAll("button").forEach((button) => {
   button.classList.add("button");
 });
 
-document.querySelector("form").addEventListener("submit", async (event) => {
-  event.preventDefault();
+document.querySelector("form").addEventListener("submit", (event) => {
+  event.preventDefault(); // add async once button is working and start api service
 
   // const city = event.target.city.value;
 
