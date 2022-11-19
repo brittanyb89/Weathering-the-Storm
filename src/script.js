@@ -1,16 +1,16 @@
-// import apiService from "./services/api.service";
-// import renderService from "./services/render.service";
+import apiService from "./services/api.service";
+import renderService from "./services/render.service";
 
 document.querySelectorAll("button").forEach((button) => {
   button.classList.add("button");
 });
 
-document.querySelector("form").addEventListener("submit", (event) => {
-  event.preventDefault(); // add async once button is working and start api service
+document.querySelector("form").addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-  // const city = event.target.city.value;
+  const city = event.target.city.value;
 
-  // const data = await apiService.getWeatherByCity(city);
+  const data = await apiService.getWeatherByCity(city);
 
-  // renderService.renderWeather(city, data);
+  renderService.renderWeather(city, data);
 });
