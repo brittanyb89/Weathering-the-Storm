@@ -35,6 +35,7 @@
     >
       <div class="container text-center">
         <div class="row">
+          <!-- form for search city input -->
           <form class="col-3">
             <legend>Search by City</legend>
             <input
@@ -47,6 +48,8 @@
             />
             <button class="btn btn-primary" type="submit">Get Forecast</button>
           </form>
+
+          <!-- current weather for searched city -->
           <div class="col-6" id="results">
             <h2>Current Conditions for: <span id="current"></span></h2>
             <ul class="flex flex-col gap-y-2 px-2"></ul>
@@ -54,6 +57,8 @@
           </div>
           <div class="col-1"></div>
         </div>
+
+        <!-- search history -->
         <div class="row">
           <div class="col">
             <h2>Search History</h2>
@@ -70,6 +75,8 @@
               <button type="button" class="btn btn-dark">Button</button>
             </div>
           </div>
+
+          <!-- 5-day forecast display -->
           <div class="col-5" id="future">
             <h2>5 Day Forecast <span id="Forecast"></span></h2>
             <ul class="flex flex-col gap-y-2 px-2"></ul>

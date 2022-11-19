@@ -1,6 +1,7 @@
 // import apiService from "./services/api.service";
 // error message in console stating i cannot use import outside of module
 // import renderService from "./services/render.service";
+const APIKEY = "e44adac92450ec69c542cdd83e3a48b0";
 
 document.querySelectorAll("button").forEach((button) => {
   button.classList.add("button");
