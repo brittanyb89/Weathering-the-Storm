@@ -37,60 +37,39 @@
     >
       <div class="container text-center">
         <div class="row">
-          <!-- form for search city input -->
-          <form class="col-3">
-            <legend>Search by City</legend>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Enter City"
-              aria-label="Enter City"
-              id="city"
-              class="block w-full rounded p-4 ring-2 ring-neutral-400"
-            />
-            <button class="btn btn-primary" type="submit">Get Forecast</button>
-          </form>
+          <!-- form for searched city input -->
+          <div id="content-left" class="col-md-3">
+            <form>
+              <label for="city-search">Search by City</label>
+              <div class="form-row">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter City"
+                  name="City"
+                  id="city-search"
+                  value="Austin"
+                />
+                <button class="btn btn-primary" type="submit" id="searchBtn">
+                  <i class="fas fa-search">Search</i>
+                </button>
+              </div>
+            </form>
+            <div id="searchError"></div>
+            <!-- search history of previousy searched cities -->
+            <ul id="cityResults" class="list-group mt-4"></ul>
+            <!-- remove search history button -->
+            <a id="clear-storage" href="#">Clear History</a>
+          </div>
 
-          <!-- current weather for searched city -->
-          <div class="col-6" id="results">
+          <!-- current weather for searched city on right side of app-->
+          <div id="content-right" class="col-md-9 pt-4">
+            <div id="currentWeather" class="rounded border"></div>
             <h2>Current Conditions for: <span id="current"></span></h2>
-            <ul class="flex flex-col gap-y-2 px-2"></ul>
-            <div class="current">Auto-column</div>
-          </div>
-          <div class="col-1"></div>
-        </div>
 
-        <!-- search history -->
-        <div class="row">
-          <div class="col">
-            <h2>Search History</h2>
-            <div
-              class="btn-group-vertical"
-              role="group"
-              aria-label="Vertical button group"
-            >
-              <button type="button" class="btn btn-dark">Button</button>
-              <button type="button" class="btn btn-dark">Button</button>
-              <button type="button" class="btn btn-dark">Button</button>
-              <button type="button" class="btn btn-dark">Button</button>
-              <button type="button" class="btn btn-dark">Button</button>
-              <button type="button" class="btn btn-dark">Button</button>
-            </div>
+            <!-- 5-day forecast display -->
+            <div id="fiveDayForecast" class="mt-5"></div>
           </div>
-
-          <!-- 5-day forecast display -->
-          <div class="col-5" id="future">
-            <h2>5 Day Forecast <span id="Forecast"></span></h2>
-            <ul class="flex flex-col gap-y-2 px-2"></ul>
-            <div class="g-col-4 grid text-center">
-              <div class="box1">Auto-column</div>
-              <div class="box2">Auto-column</div>
-              <div class="box3">Auto-column</div>
-              <div class="box4">Auto-column</div>
-              <div class="box5">Auto-column</div>
-            </div>
-          </div>
-          <div class="col"></div>
         </div>
       </div>
     </main>
