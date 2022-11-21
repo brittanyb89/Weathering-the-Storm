@@ -1,16 +1,23 @@
+import { forecastSection, form, searchHistorySection, currentWeatherSection } from "./lib";
+import apiService from "./services/api.service";
+import renderService from "./services/render.service";
+
+const historyStorage = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
 // declare global variables and weather API key
 const apiKEY = "e44adac92450ec69c542cdd83e3a48b0";
 let currentCity = "";
 let prevCity = "";
 
+let coords;
+let currentWeather;
+let forecastData;
+
 // api.serivce
 let BASE_URL = "https://api.openweathermap.org";
 
 // search and display the current weather by grabbing searched city from search box
-let getCurrentForcast = (event) => {
-  let city = $("#citySearch").val();
-  currentCity = $("#citySearch").val();
-};
+function addCityToHistoryStorage(cityName, coords)
 // Activate new city search button
 // document.querySelectorAll("button").forEach((button) => {
 //   button.classList.add("button");
