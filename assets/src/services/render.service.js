@@ -1,25 +1,25 @@
-// function createCurrentWeatherHeader({ cityName, description, icon }) {
-//   const header = document.createElement("header");
-//   const title = document.createElement("h2");
-//   const iconEl = document.createElement("img");
+function createCurrentWeatherHeader({ cityName, description, icon }) {
+  const header = document.createElement("header");
+  const title = document.createElement("h2");
+  const iconEl = document.createElement("img");
 
-//   title.textContent = cityName + "" + new Date().toLocaleDateString();
+  title.textContent = cityName + "" + new Date().toLocaleDateString();
 
-//   iconEl.src = `http://openweathermap.org/img/wn/${icon}.png`;
-//   icon.alt = description;
+  iconEl.src = `http://openweathermap.org/img/wn/${icon}.png`;
+  icon.alt = description;
 
-//   header.appendchild(title);
-//   header.appendChild(iconEl);
+  header.appendchild(title);
+  header.appendChild(iconEl);
 
-//   return header;
-// }
+  return header;
+}
 
-// function createForcastH2() {
-//   const h2 = document.createElement("h2");
-//   h2.textContent = "5-Day Forecast";
+function createForcastH2() {
+  const h2 = document.createElement("h2");
+  h2.textContent = "5-Day Forecast";
 
-//   return h2;
-// }
+  return h2;
+}
 
 // function createForecastList(forecastData) {}
 
@@ -41,4 +41,4 @@
 //   },
 //   renderForecast(forecast, el) {},
 //   renderHistoryButtons(history, el) {},
-// };
+// }

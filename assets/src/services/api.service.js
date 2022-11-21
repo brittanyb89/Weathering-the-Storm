@@ -7,9 +7,11 @@ const apiForecast = `${BASE_URL}/data/2.5/forecast`;
 // API call api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 export default {
   async getCoords(city) {
-    return fetch(`${BASE_URL}/data/${city}/forecast?lat={lat}&lon={lon}&appid={apiKEY}`)
+    return fetch(apiCoords)
   },
-  async getCurrentWeather(coords) {},
+  async getCurrentWeather(coords) {
+
+  },
   async getForecastData(coords) {
     const response = await fetch();
 
