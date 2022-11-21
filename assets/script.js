@@ -4,20 +4,33 @@ let currentCity = "";
 let prevCity = "";
 
 // api.serivce
-const BASE_URL = "https://api.openweathermap.org";
+let BASE_URL = "https://api.openweathermap.org";
 
+// search and display the current weather by grabbing searched city from search box
+let getCurrentForcast = (event) => {
+  let city = $("#citySearch").val();
+  currentCity = $("#citySearch").val();
+};
 // Activate new city search button
-document.querySelectorAll("button").forEach((button) => {
-  button.classList.add("button");
-});
+// document.querySelectorAll("button").forEach((button) => {
+//   button.classList.add("button");
+// });
 
-document.querySelector("form").addEventListener("submit", async (event) => {
-  event.preventDefault();
+// document.querySelector("form").addEventListener("submit", async (event) => {
+//   event.preventDefault();
 
-  // let city = event.target.city.value;
+//   let city = event.target.city.value;
 
-  // let data = await getWeatherByCity(city);
-});
+//   let data = await getWeatherByCity(city);
+
+// });
+
+// document.getElementById('citySearch').addEventListener('click', async (event) => {
+//   if (event.target.city.value === 'BUTTON') {
+//     const citySearch = event.target.innerText.toLowercase();
+//     let data = await
+//   }
+// })
 
 // export default {
 //   getWeatherResponse(currentWeather) {
