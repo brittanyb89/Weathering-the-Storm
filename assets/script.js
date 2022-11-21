@@ -1,21 +1,23 @@
 // declare global variables and weather API key
-const APIKEY = "e44adac92450ec69c542cdd83e3a48b0";
-const currentCity = "";
+const apiKEY = "e44adac92450ec69c542cdd83e3a48b0";
+let currentCity = "";
 let prevCity = "";
 
+// api.serivce
+const BASE_URL = "https://api.openweathermap.org";
+
 // Activate new city search button
-$("searchBtn").on("click", (event) => {
-  event.preventDefault();
+document.querySelectorAll("button").forEach((button) => {
+  button.classList.add("button");
 });
 
-// const city = event.target.city.value;
+document.querySelector("form").addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-// const data = await apiService.getWeatherByCity(city);
+  // let city = event.target.city.value;
 
-// renderService.renderWeather(city, data);
-
-// api.serivce
-// const BASE_URL = "https://api.openweathermap.org";
+  // let data = await getWeatherByCity(city);
+});
 
 // export default {
 //   getWeatherResponse(currentWeather) {
