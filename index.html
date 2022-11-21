@@ -20,6 +20,7 @@
 
     <link rel="stylesheet" href="./assets/style.css" />
     <title>Weathering the Storm</title>
+
     <!-- Added favicon -->
     <link rel="icon" type="image/x-icon" href="./assets/images/weather.jpg" />
   </head>
@@ -49,7 +50,7 @@
                   class="form-control"
                   placeholder="Enter City"
                   name="City"
-                  id="city-search"
+                  id="citySearch"
                   value=""
                 />
                 <button class="btn btn-primary" type="submit" id="searchBtn">
@@ -58,10 +59,12 @@
               </div>
             </form>
             <div id="searchError"></div>
+
             <!-- search history of previousy searched cities -->
             <ul id="cityResults" class="list-group mt-4"></ul>
+
             <!-- remove search history button -->
-            <a id="clear-storage" href="#">Clear History</a>
+            <a id="clearHistory" href="#">Clear History</a>
           </div>
 
           <!-- current weather for searched city on right side of app-->
