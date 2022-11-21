@@ -59,22 +59,23 @@
               </div>
             </form>
             <div id="searchError"></div>
+          </div>
 
-            <!-- search history of previousy searched cities -->
+          <!-- search history of previousy searched cities -->
+          <section id="searchHistory" class="list-group mt-4">
             <ul id="cityResults" class="list-group mt-4"></ul>
-
             <!-- remove search history button -->
             <a id="clearHistory" href="#">Clear History</a>
-          </div>
+          </section>
 
           <!-- current weather for searched city on right side of app-->
-          <div id="content-right" class="col-md-9 pt-4">
+          <section id="content-right" class="col-md-9 pt-4">
             <div id="currentWeather" class="rounded border"></div>
             <h2>Current Conditions for: <span id="current"></span></h2>
+          </section>
 
-            <!-- 5-day forecast display -->
-            <div id="fiveDayForecast" class="mt-5"></div>
-          </div>
+          <!-- 5-day forecast display -->
+          <section id="forecast" class="mt-5"></section>
         </div>
       </div>
     </main>
@@ -85,6 +86,6 @@
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
       crossorigin="anonymous"
     ></script>
-    <script src="./assets/src/script.js"></script>
+    <script type="module" src="./assets/src/script.js"></script>
   </body>
 </html>
