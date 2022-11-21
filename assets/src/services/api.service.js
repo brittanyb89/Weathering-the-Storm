@@ -1,18 +1,28 @@
 const apiKEY = "e44adac92450ec69c542cdd83e3a48b0";
-// const apiCoords = `${BASE_URL}/geo/1.0/direct`;
-// const apiWeather = `${BASE_URL}/data/2.5/weather`;
-// const apiForecast = `${BASE_URL}/data/2.5/forecast`;
+const BASE_URL = "https://api.openweathermap.org";
+const apiCoords = `${BASE_URL}/geo/1.0/direct`;
+const apiWeather = `${BASE_URL}/data/2.5/weather`;
+const apiForecast = `${BASE_URL}/data/2.5/forecast`;
 
-// // API call api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-// export default {
-//   async getCoords(city) {
-//     return fetch(apiCoords)
-//   },
-//   async getCurrentWeather(coords) {
-//     let await
-//   },
-//   async getForecastData(coords) {
-//     const response = await fetch();
+// API call api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+export default {
+  getWeatherResponse(cityName) {
+    return fetch(
+      `${BASE_URL}/data/2.5/forecast?lat={lat}&lon={lon}&appid=${apiKEY}`
+    );
+  },
+  async getCoords(city) {
+    return fetch(apiCoords);
+  },
+  async getCurrentWeather(weather) {
+    const response = await fetch(apiWeather);
+    return response.json();
+  },
+  async getForecastData(coords) {
+    const response = await fetch(apiForecast);
+    return response.json();
+  },
+};
 
 // 40 entries on 'list' -8 per day * 5 days; we only want to use noon entires in this example, but change according to preferrence
 // const data = await response.json();
