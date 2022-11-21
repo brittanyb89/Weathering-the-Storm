@@ -4,14 +4,15 @@ const currentCity = "";
 let prevCity = "";
 
 // Activate new city search button
-
-
-  // const city = event.target.city.value;
-
-  // const data = await apiService.getWeatherByCity(city);
-
-  // renderService.renderWeather(city, data);
+$("searchBtn").on("click", (event) => {
+  event.preventDefault();
 });
+
+// const city = event.target.city.value;
+
+// const data = await apiService.getWeatherByCity(city);
+
+// renderService.renderWeather(city, data);
 
 // api.serivce
 // const BASE_URL = "https://api.openweathermap.org";
