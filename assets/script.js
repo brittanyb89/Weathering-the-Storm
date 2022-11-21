@@ -1,14 +1,10 @@
-// import apiService from "./services/api.service";
-// error message in console stating i cannot use import outside of module
-// import renderService from "./services/render.service";
+// declare global variables and weather API key
 const APIKEY = "e44adac92450ec69c542cdd83e3a48b0";
+const currentCity = "";
+let prevCity = "";
 
-document.querySelectorAll("button").forEach((button) => {
-  button.classList.add("button");
-});
+// Activate new city search button
 
-document.querySelector("form").addEventListener("submit", async (event) => {
-  event.preventDefault();
 
   // const city = event.target.city.value;
 
