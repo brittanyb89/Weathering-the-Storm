@@ -1,47 +1,44 @@
+import {
+  forecastSection,
+  form,
+  searchHistorySection,
+  currentWeatherSection,
+} from "./lib";
+import apiService from "./services/api.service";
+import renderService from "./services/render.service";
+
 // declare global variables
-const apiKEY = "e44adac92450ec69c542cdd83e3a48b0";
 let currentCity = "";
 let prevCity = "";
 // let coords;
 // let currentWeather;
 // let forecastData;
 
-// display current conditions of searched city
-let getCurrentWeather = (event) => {
-  let cityName = $("#citySearch").val();
-  currentCity = $("#citySearch").val();
+// Activate search button
+document.querySelectorAll("button").forEach((button) => {
+  button.classList.add("button");
+});
 
-  const BASE_URL = "https://api.openweathermap.org";
-  const requestURL = `"${BASE_URL}/data/2.5/weather?q=" + city + "&units=imperial" + "&APPID=" + apiKEY;`;
+// submit form information
+document.querySelector("form").addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-  fetch(requestURL).then((response) => {
-    return response.json();
+  let cityName = event.target.cityName.value;
+
+  let forecastData = await getWeatherByCity(cityName);
+
+  renderService.renderCoords(cityName, forecastData);
+});
+
+document
+  .getElementById("cityResults")
+  .addEventListener("click", async (event) => {
+    if (event.target.searchHistory === "button") {
+      let cityResults = event.target.innerText.toUppercase();
+
+      let dataEl = await apiService.getWeatherByCity(cityResults);
+    }
   });
-};
-// import {
-//   forecastSection,
-//   form,
-//   searchHistorySection,
-//   currentWeatherSection,
-// } from "./lib";
-// import apiService from "./services/api.service";
-// import renderService from "./services/render.service";
-
-// // Activate search button
-// document.querySelectorAll("button").forEach((button) => {
-//   button.classList.add("button");
-// });
-
-// // submit form information
-// document.querySelector("form").addEventListener("submit", async (event) => {
-//   event.preventDefault();
-
-//   let cityName = event.target.city.value;
-
-//   let forecastData = await getWeatherByCity(cityName);
-
-//   renderService.renderCoords(cityName, forecastData);
-// });
 
 // // Add history to local storage
 // const historyStorage = JSON.parse(localStorage.getItem("searchHistory")) || [];

@@ -3,8 +3,6 @@
 //   const title = document.createElement("h2");
 //   const iconEl = document.createElement("img");
 
-//   title.textContent = cityName + "" + new Date().toLocaleDateString();
-
 //   iconEl.src = `http://openweathermap.org/img/wn/${icon}.png`;
 //   icon.alt = description;
 
