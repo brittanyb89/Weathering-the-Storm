@@ -12,7 +12,7 @@
 //   return header;
 // }
 
-// function createForcastH2() {
+// function createWeatherH2() {
 //   const h2 = document.createElement("h2");
 //   h2.textContent = "5-Day Forecast";
 
@@ -35,8 +35,8 @@
 //     el.appendchild(createCurrentWeatherHeader({ cityName, description, icon }));
 //     el.appendchild(createWeatherList({ temp, windSpeed, humidity }));
 //     // tailwind to give top to bottom effect
-//     el.classList.add("border-y");
+//     // el.classList.add("border-y");
 //   },
 //   renderForecast(forecast, el) {},
 //   renderHistoryButtons(history, el) {},
-// }
+// };

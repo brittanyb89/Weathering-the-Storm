@@ -12,15 +12,23 @@ export default {
     );
   },
   async getCoords(city) {
-    return fetch(apiCoords);
+    const response = await fetch(
+      `${apiCoords}?q=${city}&limit=5&appid=${apiKEY}`
+    );
+    const [initialCity] = await response.json();
+    return { lat: initialCity.lat, lon: initialCity.lon };
   },
   async getCurrentWeather(weather) {
-    const response = await fetch(apiWeather);
-    return response.json();
+    const response = await fetch(
+      `${apiWeather}?lat=${weather.lat}&lon=${weather.lon}&units=imperial&appid=${apiKEY}`
+    );
+    return await response.json();
   },
   async getForecastData(coords) {
-    const response = await fetch(apiForecast);
-    return response.json();
+    const response = await fetch(
+      `${apiForecast}?lat=${coords.lat}&lon=${coords.lon}&units=imperial&appid=${apiKEY}`
+    );
+    return await response.json();
   },
 };
 
