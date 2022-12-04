@@ -47,7 +47,7 @@ button {
   text-decoration: none;
 }
 
-#current {
+/* #current {
   background-color: azure;
   border: 1px solid black;
   display: flex;
@@ -56,4 +56,4 @@ button {
   margin: 1rem 1rem 1rem;
   padding: 1rem;
   width: 45rem;
-}
+} */
