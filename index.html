@@ -75,8 +75,14 @@
 
           <!-- current weather for searched city on right side of app-->
           <div id="content-right" class="col-md-9 pt-4">
-            <section id="currentWeather" class="rounded border"></section>
-            <h2>Current Conditions for: <span id="current"></span></h2>
+            <section id="currentWeather" class="rounded border">
+              <h2>
+                <p id="current"></p>
+              </h2>
+              <ul id="demo">
+                <li></li>
+              </ul>
+            </section>
           </div>
 
           <!-- 5-day forecast display -->
@@ -94,8 +100,8 @@
   </body>
 </html>
 
-<!-- 1. enter city in search bar
-2. save sity into local storage and display in history section on app
-3. show currentsearched city weather for the day
+<!--
+2. save city into local storage and display in history section on app
+3. show current searched city weather for the day
 4. show the 5 day forecast for the currently searched city
 5. able to click on the search history city to display weather -->
