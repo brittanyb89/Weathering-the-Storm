@@ -29,7 +29,7 @@ document.getElementById("searchBtn").addEventListener("click", function () {
   localStorage.setItem("searchHistory", JSON.stringify(historyStorage))
 });
 
-// TODO: Create a function to get the coordinates of the city
+// Function to get the coordinates of the searched city
 function getCoords(city) {
   const coordsURL = `${BASE_URL}/geo/1.0/direct?q=${city}&limit=5&appid=${apiKEY}`;
 
