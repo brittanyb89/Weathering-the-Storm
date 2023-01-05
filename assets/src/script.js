@@ -1,7 +1,3 @@
-// Used day.js to format date
-let date = dayjs().format('M/DD/YYYY');
-dayjs().format('M/D/YYYY')
-
 const form = document.querySelector("form");
 const searchHistorySection = document.getElementById("searchHistory");
 const forecastSection = document.getElementById("forecast");
@@ -15,16 +11,49 @@ let coords;
 let currentWeatherIconUrl = "";
 let humidityValue = "";
 
+// Add date format to current and future weather
+const date = dayjs().format("M/DD/YYYY");
+const dateEl = document.createElement("h2");
+dateEl.textContent = date;
+currentWeatherSection.append(dateEl);
+
 // Add history to local storage
 const historyStorage = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
 // Activate search button
-document.querySelectorAll("button").forEach((button) => {
-  button.classList.add("button");
+document.getElementById("searchBtn").addEventListener("click", function () {
+  let citySearch = document.getElementById("citySearch").value;
+  let citySearchUppercase = citySearch.toUpperCase();
+  // Add search to history section
+  historyStorage.push({ city: citySearchUppercase });
+  localStorage.setItem("searchHistory", JSON.stringify(historyStorage))
 });
-function getweatherInfo(lat, lon) {
+
+// TODO: Create a function to get the coordinates of the city
+function getCoords(city) {
+  const coordsURL = `${BASE_URL}/geo/1.0/direct?q=${city}&limit=5&appid=${apiKEY}`;
+
+  // fetch coordinates
+  fetch(coordsURL)
+    .then(function (response) {
+      return response.json();
+    })
+
+    .then(function (data) {
+      console.log("This is the coordinates DATA: ", data);
+      console.log(data[0].lat);
+      console.log(data[0].lon);
+      let lat = data[0].lat;
+      let lon = data[0].lon;
+      getWeatherInfo(lat, lon);
+    });
+}
+
+// Get weather API
+function getWeatherInfo(lat, lon) {
   const weatherURL = `${BASE_URL}/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKEY}`;
 
+  // fetch weather data
   fetch(weatherURL)
     .then(function (response) {
       return response.json();
@@ -32,97 +61,115 @@ function getweatherInfo(lat, lon) {
     .then(function (data) {
       console.log("This is current weather DATA: ", data);
       console.log(data.list);
-      let list = document.createElement('div');
-      // list.innerHTML = list[0];
-      // current.appendChild(list)
-      // document.getElementById("demo").innerHTML = data[0];
-      console.log(data.list[0]);
-      console.log(data.list[0].dt);
-      console.log(data.list[0].main.temp);
-      console.log(data.list[0].main.humidity);
-      console.log(data.list[0].weather[0].icon);
-      console.log(data.list[0].wind.speed);
-      // Display current date
-      let dateEl = document.createElement('h2');
-      dateEl.textContent = data.list[0].dt;
-      list.appendChild(dateEl);
+      let list = document.createElement("div");
+      //       // list.innerHTML = list[0];
+//       // current.appendChild(list)
+//       // document.getElementById("demo").innerHTML = data[0];
+         // console.log(data.list[0]);
+      // console.log(data.list[0].dt);
+      // console.log(data.list[0].main.temp);
+      // console.log(data.list[0].main.humidity);
+      // console.log(data.list[0].weather[0].icon);
+      // console.log(data.list[0].wind.speed);
+      //       // Display current date
+//       let dateEl = document.createElement('h2');
+//       dateEl.textContent = data.list[0].dt;
+//       list.appendChild(dateEl);
 
-      //Display current weather icon
-      let iconEl = document.createElement('img');
-      iconEl.src = "http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png"
-      list.appendChild(iconEl);
+      // //Display current weather icon
+      // let iconEl = document.createElement('img');
+      // iconEl.src = "http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png"
+      // list.appendChild(iconEl);
 
-      // Display temperature in Fahrenheit
-      let temp = document.createElement('p');
-      temp.textContent = `Temperature: `+ data.list[0].main.temp + `°F`
-      list.appendChild(temp);
+      //       // Display temperature in Fahrenheit
+//       let temp = document.createElement('p');
+//       temp.textContent = `Temperature: `+ data.list[0].main.temp + `°F`
+//       list.appendChild(temp);
 
-      // Display windspeed in MPH
-      let windSpeed = document.createElement('p');
-      windSpeed.textContent = `WindSpeed: ` + data.list[0].wind.speed + `MPH`
-      list.appendChild(windSpeed);
+//       // Display windspeed in MPH
+//       let windSpeed = document.createElement('p');
+//       windSpeed.textContent = `WindSpeed: ` + data.list[0].wind.speed + `MPH`
+//       list.appendChild(windSpeed);
 
-      // Display humidity in %
-      let humidityValue = document.createElement('p');
-      humidityValue.textContent = `Humidity: `+ data.list[0].main.humidity + `%`
-      list.appendChild(humidityValue);
+//       // Display humidity in %
+//       let humidityValue = document.createElement('p');
+//       humidityValue.textContent = `Humidity: `+ data.list[0].main.humidity + `%`
+//       list.appendChild(humidityValue);
 
 
-      console.log(list);
-      let ul = document.getElementById("demo");
-      ul.appendChild(list);
-      currentWeatherSection.append(ul);
-
+//       console.log(list);
+//       let ul = document.getElementById("demo");
+//       ul.appendChild(list);
+//       currentWeatherSection.append(ul);
     });
-
 }
 
-// set function add search to history section
-// const cityNameUppercase = citySearch.toUppercase();
-function saveSearch() {
-  const cityInputSearch = citySearch.value;
-  historyStorage.push({ city: cityInputSearch });
-  localStorage.setItem("searchHistory", JSON.stringify(historyStorage));
-  for (let i = 0; i < historyStorage.length; i++) {
-    let ul = document.createElement("ul");
-    ul.textContent = `${historyStorage[i].city}`;
-    cityResults.append(ul);
-  }
-}
+// Activate clear history button
+document.getElementById("clearHistory").addEventListener("click", function () {
+  localStorage.clear();
+  location.reload();
+});
 
+// Activate search history
+historyStorage.forEach((city) => {
+  let ul = document.createElement("ul");
+  ul.textContent = `${city.city}`;
+  cityResults.append(ul);
+});
 
+// Activate searched city as button
+cityResults.addEventListener("click", function (event) {
+  let citySearch = event.target.textContent;
+  getCoords(citySearch);
+});
 
 // submit form information
-document.querySelector("form").addEventListener("submit", async (event) => {
-  event.preventDefault();
-  saveSearch();
-  let cityName = document.getElementById("citySearch").value;
+// document.querySelector("form").addEventListener("submit", async (event) => {
+//   event.preventDefault();
+//   saveSearch();
+//   let cityName = document.getElementById("citySearch").value;
 
-  getCoords(cityName);
+//   getCoords(cityName);
 
   // renderCoords(cityName, forecastData);
-});
+// });
 // API call api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-function getCoords(city) {
-  const coordsURL = `${BASE_URL}/geo/1.0/direct?q=${city},US&limit=1&appid=${apiKEY}`;
+// function getCoords(city) {
+//   const coordsURL = `${BASE_URL}/geo/1.0/direct?q=${city},US&limit=1&appid=${apiKEY}`;
 
-  fetch(coordsURL)
-    .then(function (response) {
-      console.log("THIS IS REPOSNSE: ", response);
-      return response.json();
-    })
-    .then(function (data) {
-      console.log("THIS IS DATA: ", data);
-      console.log("lat: ", data[0].lat);
-      console.log("lon: ", data[0].lon);
-      getweatherInfo(data[0].lat, data[0].lon);
-      data.forEach((cityName) => {
-        let div = `<p>${cityName.name}</p>`;
-        document.getElementById("current").innerHTML = div;
-      });
-    });
-};
+//   fetch(coordsURL)
+//     .then(function (response) {
+//       console.log("THIS IS REPOSNSE: ", response);
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log("THIS IS DATA: ", data);
+//       console.log("lat: ", data[0].lat);
+//       console.log("lon: ", data[0].lon);
+//       getweatherInfo(data[0].lat, data[0].lon);
+//       data.forEach((cityName) => {
+//         let div = `<p>${cityName.name}</p>`;
+//         document.getElementById("current").innerHTML = div;
+//       });
+//     });
+// };
 
+
+
+
+// TODO: Create a function to display current weather
+
+// TODO: Create a function to display 5-day forecast
+
+//  TODO: Create a function to display searched city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
+
+// TODO: Create a function to display searched city's 5-day forecast with date, an icon representation of weather conditions, the temperature, the windspeed,and the humidity
+
+// TODO: Create a function to render the weather data to the page
+
+// TODO: Create a function to render the 5-day forecast to the page
+
+// TODO: Create a function to render the search history to the page
 
 
 

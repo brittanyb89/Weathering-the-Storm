@@ -1,5 +1,5 @@
-const apiKEY = "e44adac92450ec69c542cdd83e3a48b0";
-const BASE_URL = "https://api.openweathermap.org";
+// const apiKEY = "e44adac92450ec69c542cdd83e3a48b0";
+// const BASE_URL = "https://api.openweathermap.org";
 const apiCoords = `${BASE_URL}/geo/1.0/direct`;
 const apiWeather = `${BASE_URL}/data/2.5/weather`;
 const apiForecast = `${BASE_URL}/data/2.5/forecast`;
