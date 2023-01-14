@@ -1,9 +1,9 @@
 const form = document.querySelector("form");
-const searchHistorySection = document.getElementById("searchHistory");
+
 const forecastSection = document.getElementById("forecast");
-const currentWeatherSection = document.getElementById("currentWeather");
-const apiKEY = "e44adac92450ec69c542cdd83e3a48b0";
-const BASE_URL = "https://api.openweathermap.org";
+
+
+
 const cityResults = document.getElementById("cityResults");
 
 let prevCity = "";
@@ -12,22 +12,13 @@ let currentWeatherIconUrl = "";
 let humidityValue = "";
 
 // Add date format to current and future weather
-const date = dayjs().format("M/DD/YYYY");
-const dateEl = document.createElement("h2");
-dateEl.textContent = date;
-currentWeatherSection.append(dateEl);
+
 
 // Add history to local storage
-const historyStorage = JSON.parse(localStorage.getItem("searchHistory")) || [];
+
 
 // Activate search button
-document.getElementById("searchBtn").addEventListener("click", function () {
-  let citySearch = document.getElementById("citySearch").value;
-  let citySearchUppercase = citySearch.toUpperCase();
-  // Add search to history section
-  historyStorage.push({ city: citySearchUppercase });
-  localStorage.setItem("searchHistory", JSON.stringify(historyStorage))
-});
+
 
 // Activate clear history button
 document.getElementById("clearHistory").addEventListener("click", function () {
@@ -36,11 +27,7 @@ document.getElementById("clearHistory").addEventListener("click", function () {
 });
 
 // Activate search history
-historyStorage.forEach((city) => {
-  let ul = document.createElement("ul");
-  ul.textContent = `${city.city}`;
-  cityResults.append(ul);
-});
+
 
 // Activate searched city as button
 document.querySelector("ul").addEventListener("click", function (event) {
@@ -49,24 +36,7 @@ document.querySelector("ul").addEventListener("click", function (event) {
 });
 
 // Function to get the coordinates of the searched city
-function getCoords(city) {
-  const coordsURL = `${BASE_URL}/geo/1.0/direct?q=${city}&limit=5&appid=${apiKEY}`;
 
-  // fetch coordinates
-  fetch(coordsURL)
-    .then(function (response) {
-      return response.json();
-    })
-
-    .then(function (data) {
-      console.log("This is the coordinates DATA: ", data);
-      console.log(data[0].lat);
-      console.log(data[0].lon);
-      let lat = data[0].lat;
-      let lon = data[0].lon;
-      getWeatherInfo(lat, lon);
-    });
-}
 
 // Get weather API
 function getWeatherInfo(lat, lon) {
