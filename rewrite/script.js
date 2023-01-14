@@ -1,42 +1,109 @@
+import apiService from "./services/api.service.js";
+import renderService from "./services/render.service.js";
+import { forecastSection, form, searchHistorySection, todaySection } from "./lib.js";
+
 const currentWeatherSection = document.getElementById("currentWeather");
-const searchHistorySection = document.getElementById("searchHistory");
-
-const apiKEY = "e44adac92450ec69c542cdd83e3a48b0";
-const BASE_URL = "https://api.openweathermap.org";
-
-// When I search for a city, I am presented with current and future conditions for that city and that city is added to the search history
-
-// Add date format to the current weather and 5-day forecast
-const date = dayjs().format("M/DD/YYYY");
-const dateEl = document.createElement("h2");
-dateEl.textContent = date;
-currentWeatherSection.append(dateEl);
+const cityResults = document.getElementById("cityResults");
 
 // Add search history to local storage
 const historyStorage = JSON.parse(localStorage.getItem("searchHistory")) || [];
+
+// Placeholders that will get updated when api service is called
+let coords;
+let currentWeather;
+let forecastData;
 
 // Activate search button
 document.getElementById("searchBtn").addEventListener("click", function () {
   let citySearch = document.getElementById("citySearch").value;
   let citySearchUppercase = citySearch.toUpperCase();
-  // Add search to history section
-  historyStorage.push({ city: citySearchUppercase });
-  localStorage.setItem("searchHistory", JSON.stringify(historyStorage))
-});
 
-// TODO: Create a function to display searched city name in search history
+  // Create a function to display searched city name in search history
 historyStorage.forEach((city) => {
   let ul = document.createElement("ul");
   ul.textContent = `${city.city}`;
   cityResults.append(ul);
 });
 
-// When I view current weather conditions for that city, I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
-// TODO: Create a function to get coordinates of the searched city
-function getCoords(city) {
-  const coordsURL = `${BASE_URL}/geo/1.0/direct?q=${city}&limit=5&appid=${apiKEY}`;
+  // Add search to history section
+  //Check if city is already in search history
+if (!historyStorage.find((city) => city.city === citySearchUppercase)) {
+  historyStorage.push({ city: citySearchUppercase, coords });
+  localStorage.setItem("searchHistory", JSON.stringify(historyStorage));
+}
+});
 
-  // fetch coordinates
+async function renderWeather(coords) {
+  currentWeather = await apiService.getCurrentWeather(coords);
+  forecastData = await apiService.getForecast(coords);
+  console.log("Current Weather: ", currentWeather);
+  console.log("Forecast Data: ", forecastData);
+
+  renderService.renderCurrentWeather(currentWeather, todaySection);
+  renderService.renderForecast(forecastData, forecastSection);
+}
+
+renderService.renderSearchHistory(historyStorage, searchHistorySection);
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const city = event.target.city.value;
+
+  coords = await apiService.getCoords(city);
+
+  addCityToHistory(city, coords);
+  renderService.renderSearchHistory(historyStorage, searchHistorySection);
+
+  renderWeather(coords);
+});
+
+historySection.addEventListener("click", async (event) => {
+  const clicked = event.target;
+
+  if (clicked.tagName === "BUTTON") {
+    renderWeather({
+      lat: clicked.dataset.lat,
+      lon: clicked.dataset.lon,
+    });
+  }
+});
+
+
+
+
+
+//  I am presented with current and future conditions for that city
+
+// Add date format to the current weather and 5-day forecast
+// const date = dayjs().format("M/DD/YYYY");
+// const dateEl = document.createElement("h2");
+// dateEl.textContent = date;
+// currentWeatherSection.append(dateEl);
+
+
+
+
+
+
+
+// TODO: Create a function to get coordinates of the searched city
+// function getCoords(city) {
+//   const coordsURL = `${BASE_URL}/geo/1.0/direct?q=${city}&limit=5&appid=${apiKEY}`;
+
+//   fetch(coordsURL)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log("This is the coordinates DATA: ", data);
+//     })
+//     .catch(function() {
+//       console.log("error");
+//     });
+// }
+
+
   // fetch(coordsURL)
   //   .then(function (response) {
   //     return response.json();
@@ -50,7 +117,30 @@ function getCoords(city) {
   //     let lon = data[0].lon;
   //     getWeatherInfo(lat, lon);
   //   });
-}
+  // }
+
+// function getCoords(city) {
+//   const coordsURL = `${BASE_URL}/geo/1.0/direct?q=${city},US&limit=1&appid=${apiKEY}`;
+
+//   fetch(coordsURL)
+//     .then(function (response) {
+//       console.log("THIS IS REPOSNSE: ", response);
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log("THIS IS COORDINATES DATA: ", data);
+//       console.log("lat: ", data[0].lat);
+//       console.log("lon: ", data[0].lon);
+//       getweatherInfo(data[0].lat, data[0].lon);
+//       data.forEach((cityName) => {
+//         let div = `<p>${cityName.name}</p>`;
+//         document.getElementById("current").innerHTML = div;
+//       });
+//     });
+// };
+
+// When I view current weather conditions for that city, I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
+
 
 // TODO: API service to get current weather data
 // function getWeatherInfo(lat, lon) {
