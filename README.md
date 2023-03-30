@@ -44,6 +44,8 @@ THEN I am again presented with current and future conditions for that city
 
 The following image shows the web application's appearance and functionality:
 
+![Weather Dashboard](assets/images/weather%20dashboard.png)
+
 ## Usage
 
 Type in a city name in the search bar and click the search button. The current weather conditions and a five-day forecast will be displayed. The city name will also be added to the search history. Click on a city in the search history to view the weather conditions for that city.
